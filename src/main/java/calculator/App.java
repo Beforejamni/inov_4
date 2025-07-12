@@ -17,7 +17,7 @@ public class App {
         //결과를 문자열로 저장
         String strResult = "";
 
-        while (true){
+        while (true) {
             try {
                 int firstNum;
                 int secondNum;
@@ -59,27 +59,22 @@ public class App {
                 int result = 0;
 
                 //오버 플로우 방지를 위해 Math 메서드를 사용하였습니다.
+                // 인수의 조건에서 양의 정수(0 포함)라고 하여서 빼기와 나누기연산에서는 오버플로우가 발생하지 않는다.
                 switch (operator) {
                     case '+':
                         result = Math.addExact(firstNum, secondNum);
                         break;
 
                     case '-':
-                        result = Math.subtractExact(firstNum, secondNum);
+                        result = firstNum - secondNum;
                         break;
 
                     case '*':
                         result = Math.multiplyExact(firstNum, secondNum);
                         break;
-                    //버전에 Math.divideExact() 가 없는 버전이라 직접 만들었습니다
+                    // / by zero Exception 
                     case '/':
                         int div = firstNum / secondNum;
-                        if (0 <= (firstNum & secondNum & div)) {
-                            result = firstNum / secondNum;
-                        } else {
-                            throw new ArithmeticException("integer overflow");
-                        }
-
                 }
                 strResult = result + "";
 
@@ -99,8 +94,20 @@ public class App {
 
             System.out.println("result = " + strResult);
 
-            results[count] = strResult;
-            count++;
+            //10회 이하 계산
+            if (count < 10) {
+                results[count] = strResult;
+                count++;
+            } else {
+                // 10회 초과 계산 - 배열의 길이 변경 시, 배열 선언부만 변경하면 코드 변경 필요 X
+                int finalIndex = results.length - 1;
+
+                for (int i = 0; i < finalIndex - 1; i++) {
+                    results[i] = results[i + 1];
+                }
+                results[finalIndex] = strResult;
+
+            }
 
             System.out.println("results = " + Arrays.toString(results));
 
@@ -110,10 +117,13 @@ public class App {
             System.out.println("더 계산하시겠습니까?(exit 입력 시 종료)");
             String exit = scanner.next();
 
-            if(exit.equals("exit")) {
+            if (exit.equals("exit")) {
                 break;
 
             }
+
+
         }
     }
 }
+
