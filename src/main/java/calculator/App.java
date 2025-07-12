@@ -1,5 +1,6 @@
 package calculator;
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -9,6 +10,12 @@ public class App {
 
         Scanner scanner = new Scanner(System.in);
 
+        //예외도 저장 관리하기 위해 String 배열 사용
+        String[] results = new String[10];
+        int count = 0;
+
+        //결과를 문자열로 저장
+        String strResult = "";
 
         while (true){
             try {
@@ -74,17 +81,31 @@ public class App {
                         }
 
                 }
-
-                System.out.println("result = " + result);
-
+                strResult = result + "";
 
             } catch (InputMismatchException e) {
 
+                //InputMismatchException 은 e.getMessage() 로 null을 보냄
                 System.out.println("InputMismatchException");
+
+                strResult = "InputMismatchException";
 
             } catch (ArithmeticException e) {
                 System.out.println(e.getMessage());
+
+                strResult = e.getMessage();
             }
+
+
+            System.out.println("result = " + strResult);
+
+            results[count] = strResult;
+            count++;
+
+            System.out.println("results = " + Arrays.toString(results));
+
+            //버퍼에 개행문자가 남아있는 것을 처리
+            scanner.nextLine();
 
             System.out.println("더 계산하시겠습니까?(exit 입력 시 종료)");
             String exit = scanner.next();
