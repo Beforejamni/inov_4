@@ -11,6 +11,7 @@ public class App {
         //FIFO구조이기에 Queue 선언
         Queue<String> results = new LinkedList<>();
 
+
         //결과를 문자열로 저장
         String strResult = "";
 
@@ -18,7 +19,7 @@ public class App {
             try {
                 int firstNum;
                 int secondNum;
-                int operator;
+                char operator;
 
                 //인수는 양의 정수
                 while (true) {
