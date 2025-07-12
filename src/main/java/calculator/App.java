@@ -1,8 +1,6 @@
 package calculator;
 
-import java.util.Arrays;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 public class App {
 
@@ -10,9 +8,8 @@ public class App {
 
         Scanner scanner = new Scanner(System.in);
 
-        //예외도 저장 관리하기 위해 String 배열 사용
-        String[] results = new String[10];
-        int count = 0;
+        //FIFO구조이기에 Queue 선언
+        Queue<String> results = new LinkedList<>();
 
         //결과를 문자열로 저장
         String strResult = "";
@@ -72,7 +69,7 @@ public class App {
                     case '*':
                         result = Math.multiplyExact(firstNum, secondNum);
                         break;
-                    // / by zero Exception 
+                    // / by zero Exception
                     case '/':
                         int div = firstNum / secondNum;
                 }
@@ -94,25 +91,17 @@ public class App {
 
             System.out.println("result = " + strResult);
 
-            //10회 이하 계산
-            if (count < 10) {
-                results[count] = strResult;
-                count++;
-            } else {
-                // 10회 초과 계산 - 배열의 길이 변경 시, 배열 선언부만 변경하면 코드 변경 필요 X
-                int finalIndex = results.length - 1;
-
-                for (int i = 0; i < finalIndex - 1; i++) {
-                    results[i] = results[i + 1];
-                }
-                results[finalIndex] = strResult;
-
-            }
-
-            System.out.println("results = " + Arrays.toString(results));
+            results.add(strResult);
 
             //버퍼에 개행문자가 남아있는 것을 처리
             scanner.nextLine();
+
+            System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
+            String removeResult = scanner.next();
+
+            if(removeResult.equals("remove")){
+                results.remove();
+            }
 
             System.out.println("더 계산하시겠습니까?(exit 입력 시 종료)");
             String exit = scanner.next();
