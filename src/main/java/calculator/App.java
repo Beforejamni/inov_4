@@ -113,6 +113,7 @@ public class App {
                     for(String result : results){
                         System.out.print(result + ", ");
                     }
+                    System.out.println("\n");
                 }
             }
 
