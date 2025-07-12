@@ -103,6 +103,18 @@ public class App {
                 results.remove();
             }
 
+            //remove로 인해 results가 비었을 경우
+            if(!(results.isEmpty())){
+                System.out.println("저장된 연산 결과를 조회하시겠습니까? (inquiry 입력시 조회)");
+                String inquiryResults = scanner.next();
+
+                if(inquiryResults.equals("inquiry")){
+                    for(String result : results){
+                        System.out.print(result + ", ");
+                    }
+                }
+            }
+
             System.out.println("더 계산하시겠습니까?(exit 입력 시 종료)");
             String exit = scanner.next();
 
