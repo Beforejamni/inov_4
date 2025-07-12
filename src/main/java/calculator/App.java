@@ -50,13 +50,38 @@ public class App {
                 }
             }
 
+            int result = 0;
 
-            System.out.println("firstNum = " + firstNum);
-            System.out.println("secondNum = " + secondNum);
-            System.out.println("operator = " + operator);
+            //오버 플로우 방지를 위해 Math 메서드를 사용하였습니다.
+            switch (operator)   {
+                case '+' : result = Math.addExact(firstNum ,secondNum);
+                            break;
+
+                case '-' : result = Math.subtractExact(firstNum, secondNum);
+                            break;
+
+                case '*' : result = Math.multiplyExact(firstNum, secondNum);
+                            break;
+                //버전에 Math.divideExact() 가 없는 버전이라 직접 만들었습니다
+                case '/' :
+                        int div = firstNum / secondNum;
+                            if(0 <= (firstNum & secondNum & div)){
+                                result = firstNum / secondNum;
+                            }else{
+                                throw new ArithmeticException("integer overflow");
+                            }
+
+            }
+
+            System.out.println("result = " + result);
+
+
         }catch(InputMismatchException e){
 
             System.out.println("InputMismatchException");
+
+        }catch (ArithmeticException e) {
+            System.out.println(e.getMessage());
         }
 
     }
