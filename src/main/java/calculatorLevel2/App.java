@@ -1,5 +1,7 @@
 package calculatorLevel2;
 
+import calculatorLevel2.Calculator;
+
 import java.util.InputMismatchException;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -11,6 +13,7 @@ public class App {
 
         Scanner scanner = new Scanner(System.in);
 
+        Calculator calculator = new Calculator();
         //FIFO구조이기에 Queue 선언
         Queue<String> results = new LinkedList<>();
 
@@ -21,7 +24,7 @@ public class App {
             try {
                 int firstNum;
                 int secondNum;
-                int operator;
+                char operator;
 
                 //인수는 양의 정수
                 while (true) {
@@ -58,24 +61,7 @@ public class App {
 
                 int result = 0;
 
-                //오버 플로우 방지를 위해 Math 메서드를 사용하였습니다.
-                // 인수의 조건에서 양의 정수(0 포함)라고 하여서 빼기와 나누기연산에서는 오버플로우가 발생하지 않는다.
-                switch (operator) {
-                    case '+':
-                        result = Math.addExact(firstNum, secondNum);
-                        break;
-
-                    case '-':
-                        result = firstNum - secondNum;
-                        break;
-
-                    case '*':
-                        result = Math.multiplyExact(firstNum, secondNum);
-                        break;
-                    // / by zero Exception
-                    case '/':
-                        int div = firstNum / secondNum;
-                }
+                result = calculator.calculate(firstNum ,secondNum, operator);
                 strResult = result + "";
 
             } catch (InputMismatchException e) {
@@ -115,6 +101,7 @@ public class App {
                     for(String result : results){
                         System.out.print(result + ", ");
                     }
+                    System.out.println("\n");
                 }
             }
 
