@@ -94,15 +94,12 @@ public class App {
             }
 
             //remove로 인해 results가 비었을 경우
-            if(!(calculator.getResults().isEmpty())){
+            if(!(calculator.getResults().isEmpty())) {
                 System.out.println("저장된 연산 결과를 조회하시겠습니까? (inquiry 입력시 조회)");
                 String inquiryResults = scanner.next();
 
-                if(inquiryResults.equals("inquiry")){
-                    for(String result : calculator.getResults()){
-                        System.out.print(result + ", ");
-                    }
-                    System.out.println("\n");
+                if (inquiryResults.equals("inquiry")) {
+                    calculator.inquiryResults();
                 }
             }
 

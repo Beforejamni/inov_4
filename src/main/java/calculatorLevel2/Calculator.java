@@ -39,6 +39,15 @@ public class Calculator {
         results.remove();
     }
 
+    public void inquiryResults() {
+        System.out.print("result = ");
+
+        for(String result : this.results) {
+            System.out.print( result + ", ");
+        }
+        System.out.println();
+    }
+
     public Queue<String> getResults() {
         return results;
     }
