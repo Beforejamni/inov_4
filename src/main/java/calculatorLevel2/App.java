@@ -13,10 +13,7 @@ public class App {
 
         Scanner scanner = new Scanner(System.in);
 
-        Calculator calculator = new Calculator();
-
-        //컬렉션 필드 설정
-        calculator.setResults(new LinkedList<String>());
+        Calculator calculator = new Calculator(new LinkedList<>());
 
         //결과를 문자열로 저장
         String strResult = "";

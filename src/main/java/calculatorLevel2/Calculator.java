@@ -7,6 +7,10 @@ public class Calculator {
     private Queue<String> results;
 
 
+    public Calculator(Queue<String> results) {
+        this.results = results;
+    }
+
 
     // 나누기 연산의 / by zero
     public int calculate(int firstNum , int secondNum ,char operator)throws ArithmeticException{
