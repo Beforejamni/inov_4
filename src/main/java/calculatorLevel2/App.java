@@ -13,13 +13,14 @@ public class App {
 
         Scanner scanner = new Scanner(System.in);
 
-        Calculator calculator = new Calculator(new LinkedList<>() ,new LinkedList<>());
+       ArithmeticCalculator operateResults = new ArithmeticCalculator(new LinkedList<>());
+       CircleCalculator circleResults = new CircleCalculator(new LinkedList<>());
 
         //결과를 문자열로 저장
         String strResult = "";
 
         while (true) {
-            System.out.print("Enter circle or operate : ");
+            System.out.print("계산하고 싶은 종류를 선택하세요( circle or  operate ) : ");
             String kindResults = scanner.next();
 
             try {
@@ -58,12 +59,14 @@ public class App {
 
                         if (operator == '+' || operator == '-' || operator == '*' || operator == '/') {
                             break;
+                        }else{
+                            System.out.println(" + , -, * , / 만 가능합니다");
                         }
                     }
 
                     int result = 0;
 
-                    result = calculator.calculate(firstNum, secondNum, operator);
+                    result = operateResults.calculate(firstNum, secondNum, operator);
                     strResult = result + "";
                 } else if (kindResults.equals("circle")) {
                         double radius = 0;
@@ -79,7 +82,7 @@ public class App {
                         }
                     }
 
-                    double result = calculator.calculateCircleArea(radius);
+                    double result = circleResults.calculateCircleArea(radius);
                     strResult = result + "";
 
                 } else{
@@ -106,9 +109,9 @@ public class App {
             System.out.println("result = " + strResult);
 
             if(kindResults.equals("operate")) {
-                calculator.addResults(strResult);
+                operateResults.addResult(strResult);
             }else if (kindResults.equals("circle")) {
-                calculator.addCircleResult(strResult);
+                circleResults.addResult(strResult);
 
             }
 
@@ -127,16 +130,16 @@ public class App {
                 String removeResult = scanner.next();
 
                 if (removeResult.equals("remove")) {
-                    calculator.removeResult();
+                    operateResults.removeResult();
                 }
 
                 //remove로 인해 results가 비었을 경우
-                if (!(calculator.getResults().isEmpty())) {
+                if (!(operateResults.getResults().isEmpty())) {
                     System.out.println("저장된 연산 결과를 조회하시겠습니까? (inquiry 입력시 조회)");
                     String inquiryResults = scanner.next();
 
                     if (inquiryResults.equals("inquiry")) {
-                        calculator.inquiryResults();
+                        operateResults.inquiryResults();
                     }
                 }
                 break;
@@ -146,16 +149,16 @@ public class App {
                      removeResult = scanner.next();
 
                     if (removeResult.equals("remove")) {
-                        calculator.removeCircleResult();
+                        circleResults.removeResult();
                     }
 
                     //remove로 인해 results가 비었을 경우
-                    if (!(calculator.getCircleResults().isEmpty())) {
+                    if (!(circleResults.getResults().isEmpty())) {
                         System.out.println("저장된 연산 결과를 조회하시겠습니까? (inquiry 입력시 조회)");
                         String inquiryResults = scanner.next();
 
                         if (inquiryResults.equals("inquiry")) {
-                            calculator.inquiryCircleResults();
+                            circleResults.inquiryResults();
                         }
                     }
                     break;
@@ -164,8 +167,8 @@ public class App {
                     break;
 
             }
-            calculator.inquiryResults();
-            calculator.inquiryCircleResults();
+            operateResults.inquiryResults();
+            circleResults.inquiryResults();
 
             System.out.println("더 계산하시겠습니까?(exit 입력 시 종료)");
             String exit = scanner.next();
@@ -181,3 +184,5 @@ public class App {
 }
 
 // 처음부터 바로 관리(결과 제거, 조회)로 이어지는 코드 작성을 해보고 싶었습니다.
+//abstract class 생성 시, 공통된 메서드를 abstract에 구체화하는 것이 맞는지
+// override를 통해 재정의해서 쓰는 것이 맞는지에 대한 고민이 많이 생깁니다.
