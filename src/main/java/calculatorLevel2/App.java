@@ -90,7 +90,7 @@ public class App {
             String removeResult = scanner.next();
 
             if(removeResult.equals("remove")){
-                calculator.getResults().remove();
+                calculator.removeResult();
             }
 
             //remove로 인해 results가 비었을 경우

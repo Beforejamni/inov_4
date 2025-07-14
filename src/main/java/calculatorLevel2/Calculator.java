@@ -35,6 +35,10 @@ public class Calculator {
         results.add(result);
     }
 
+    public void removeResult() {
+        results.remove();
+    }
+
     public Queue<String> getResults() {
         return results;
     }
