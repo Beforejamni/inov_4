@@ -9,21 +9,23 @@ public class ArithmeticCalculator extends Calculator {
        super(results);
     }
 
+
+    //먼가 책임이 많아보입니다,,,
     public int calculate(int firstNum , int secondNum , char operator)throws ArithmeticException {
 
         switch (operator) {
 
             case '+':
-                return Math.addExact(firstNum, secondNum);
+                return new AddOperator().operate(firstNum ,secondNum, operator);
 
             case '-':
-                return firstNum - secondNum;
+                return new SubtractOperator().operate(firstNum, secondNum, operator);
 
             case '*':
-                return Math.multiplyExact(firstNum, secondNum);
+                return new MultiplyOperator().operate(firstNum, secondNum, operator);
 
             case '/':
-                return firstNum / secondNum;
+                return new DivideOperator().operate(firstNum, secondNum, operator);
 
             default:
                 throw new ArithmeticException("계산할 수 없습니다.");

@@ -4,7 +4,6 @@ import calculatorLevel2.Calculator;
 
 import java.util.InputMismatchException;
 import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Scanner;
 
 public class App {
@@ -53,16 +52,11 @@ public class App {
                     }
 
                     //사칙연산 기호는 +, -, *, /
-                    while (true) {
-                        System.out.print("사칙 연산기호를 입력하세요: ");
-                        operator = scanner.next().charAt(0);
 
-                        if (operator == '+' || operator == '-' || operator == '*' || operator == '/') {
-                            break;
-                        }else{
-                            System.out.println(" + , -, * , / 만 가능합니다");
-                        }
-                    }
+                    System.out.print("사칙 연산기호를 입력하세요: ");
+                    operator = scanner.next().charAt(0);
+
+
 
                     int result = 0;
 
