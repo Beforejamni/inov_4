@@ -31,4 +31,15 @@ public class Calculator {
 
     }
 
+    public void addResults(String result){
+        results.add(result);
+    }
+
+    public Queue<String> getResults() {
+        return results;
+    }
+
+    public void setResults(Queue<String> results) {
+        this.results = results;
+    }
 }

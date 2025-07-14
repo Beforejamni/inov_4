@@ -14,8 +14,9 @@ public class App {
         Scanner scanner = new Scanner(System.in);
 
         Calculator calculator = new Calculator();
-        //FIFO구조이기에 Queue 선언
-        Queue<String> results = new LinkedList<>();
+
+        //컬렉션 필드 설정
+        calculator.setResults(new LinkedList<String>());
 
         //결과를 문자열로 저장
         String strResult = "";
@@ -80,7 +81,7 @@ public class App {
 
             System.out.println("result = " + strResult);
 
-            results.add(strResult);
+            calculator.addResults(strResult);
 
             //버퍼에 개행문자가 남아있는 것을 처리
             scanner.nextLine();
@@ -89,16 +90,16 @@ public class App {
             String removeResult = scanner.next();
 
             if(removeResult.equals("remove")){
-                results.remove();
+                calculator.getResults().remove();
             }
 
             //remove로 인해 results가 비었을 경우
-            if(!(results.isEmpty())){
+            if(!(calculator.getResults().isEmpty())){
                 System.out.println("저장된 연산 결과를 조회하시겠습니까? (inquiry 입력시 조회)");
                 String inquiryResults = scanner.next();
 
                 if(inquiryResults.equals("inquiry")){
-                    for(String result : results){
+                    for(String result : calculator.getResults()){
                         System.out.print(result + ", ");
                     }
                     System.out.println("\n");
