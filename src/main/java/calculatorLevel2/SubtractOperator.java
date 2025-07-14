@@ -1,8 +1,9 @@
 package calculatorLevel2;
 
-public class SubtractOperator {
+public class SubtractOperator implements Operator {
 
-    public int operate(int firstNum, int secondNum, char operator) throws ArithmeticException{
+    @Override
+    public int operate(int firstNum, int secondNum) throws ArithmeticException{
         int result = firstNum - secondNum;
 
         if(((firstNum ^ secondNum) & (firstNum ^ result)) < 0){

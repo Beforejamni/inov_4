@@ -1,8 +1,9 @@
 package calculatorLevel2;
 
-public class MultiplyOperator {
+public class MultiplyOperator implements Operator {
 
-    public int operate(int firstNum, int secondNum, char operator) throws ArithmeticException{
+    @Override
+    public int operate(int firstNum, int secondNum) throws ArithmeticException{
 
         long result =(long) firstNum * (long)secondNum;
 

@@ -1,8 +1,9 @@
 package calculatorLevel2;
 
-public class DivideOperator {
+public class DivideOperator implements Operator{
 
-    public int operate(int firstNum, int secondNum, char operator) throws ArithmeticException{
+    @Override
+    public int operate(int firstNum, int secondNum) throws ArithmeticException{
 
         int result = firstNum / secondNum;
 
