@@ -1,9 +1,14 @@
 package calculatorLevel2;
 
+import calculatorLevel3.AddOperator;
+import calculatorLevel3.DivideOperator;
+import calculatorLevel3.MultiplyOperator;
+import calculatorLevel3.SubtractOperator;
+
 import java.sql.PreparedStatement;
 import java.util.Queue;
 
-public class ArithmeticCalculator extends Calculator{
+public class ArithmeticCalculator extends Calculator {
 
     private Queue<String> results;
 
