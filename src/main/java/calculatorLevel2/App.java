@@ -76,7 +76,7 @@ public class App {
                         }
                     }
 
-                    double result = circleResults.calculateCircleArea(radius);
+                    double result = circleResults.calculate(radius);
                     strResult = result + "";
 
                 } else{
@@ -117,7 +117,7 @@ public class App {
             String management = scanner.next();
 
 
-
+            //저장 값을 한 번에 담으려고 시도하였으나 잘 되지 않았습니다..
             switch (management) {
 
                 case "operate" :

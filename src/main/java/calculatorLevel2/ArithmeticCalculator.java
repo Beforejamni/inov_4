@@ -1,13 +1,16 @@
 package calculatorLevel2;
 
+import java.sql.PreparedStatement;
 import java.util.Queue;
 
 public class ArithmeticCalculator extends Calculator{
 
+    private Queue<String> results;
 
     public ArithmeticCalculator(Queue<String> results){
-       super(results);
+        this.results = results;
     }
+
 
     public int calculate(int firstNum , int secondNum, char operator )throws ArithmeticException {
 
@@ -30,6 +33,26 @@ public class ArithmeticCalculator extends Calculator{
         }
     }
 
+    @Override
+    public void addResult(String result) {
+        this.results.add(result);
+    }
 
+    @Override
+    public void removeResult() {
+        results.remove();
+    }
 
+    @Override
+    public void inquiryResults() {
+        System.out.print("results : ");
+        for (String result : results) {
+            System.out.println(result + ", ");
+        }
+        System.out.println();
+    }
+
+    public Queue<String> getResults() {
+        return results;
+    }
 }
