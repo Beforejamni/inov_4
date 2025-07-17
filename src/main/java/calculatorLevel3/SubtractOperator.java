@@ -3,18 +3,19 @@ package calculatorLevel3;
 public class SubtractOperator implements Operator {
 
     @Override
-    public int operate(int firstNum, int secondNum) throws ArithmeticException{
-        int result = firstNum - secondNum;
+    public <T extends Number> double operate( T firstNum ,T secondNum){
 
-        if(((firstNum ^ secondNum) & (firstNum ^ result)) < 0){
-            throw new ArithmeticException("integer overflow");
+        if( firstNum instanceof Double || secondNum instanceof  Double) {
+            return  (firstNum.doubleValue() - secondNum.doubleValue());
+        }else if(firstNum instanceof Float || secondNum instanceof Float) {
+            return  (firstNum.floatValue() - secondNum.floatValue());
+        }else if(firstNum instanceof Long || secondNum instanceof Long) {
+            return  (firstNum.longValue() - secondNum.longValue());
+        }else if(firstNum instanceof Integer || secondNum instanceof Integer) {
+            return  (firstNum.intValue() - secondNum.intValue());
         }else{
-            return result;
+            throw new IllegalArgumentException("Not Calculate");
         }
     }
 }
 
-//App 조건이 0을 포함한 양의 정수라고 하였지만, 조건이 바꼈을 경우를 대비해 코드를 작성하였다.
-
-//firstNum - secondNum => firstNum + (-secondNum)
-// firstNum < 0 , secondNum < 0, result > 0 == overflow

@@ -22,4 +22,5 @@ public enum OperatorType {
     public Operator getOperate() {
         return operate;
     }
+
 }

@@ -1,22 +1,25 @@
 package calculatorLevel3;
 
+import java.util.NavigableMap;
+
 public class AddOperator implements Operator {
 
     @Override
-    public int operate(int firstNum , int secondNum) throws ArithmeticException{
+    public <T extends Number> double operate(T firstNum , T secondNum){
 
-        int result = firstNum + secondNum;
-
-        if(((firstNum ^ result) & (secondNum ^ result)) < 0){
-            throw new ArithmeticException("integer overflow");
+        if( firstNum instanceof Double || secondNum instanceof  Double) {
+            return  (firstNum.doubleValue() + secondNum.doubleValue());
+        }else if(firstNum instanceof Float || secondNum instanceof Float) {
+            return  (firstNum.floatValue() + secondNum.floatValue());
+        }else if(firstNum instanceof Long || secondNum instanceof Long) {
+            return  (firstNum.longValue() + secondNum.longValue());
+        }else if(firstNum instanceof Integer || secondNum instanceof Integer) {
+            return  (firstNum.intValue() + secondNum.intValue());
         }else{
-            return result;
+            throw new IllegalArgumentException("Not Calculate");
         }
     }
+//overflow를 막지 못한다.
+
 }
 
-//^ 는 xor연산이다. 비트 중 하나만 0일 경우 1로 환산한다.
-// 더했을 경우 result가 음수면 오버플로우가 발생한 것이기 때문에,
-//((firstNum ^ result) & (secondNum ^ result)) < 0 으로 판별할 수 있다.
-
-//Math.addExact() 참고.

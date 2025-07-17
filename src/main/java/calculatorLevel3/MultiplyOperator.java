@@ -1,16 +1,22 @@
 package calculatorLevel3;
 
+
 public class MultiplyOperator implements Operator {
 
     @Override
-    public int operate(int firstNum, int secondNum) throws ArithmeticException{
+    public <T extends Number> double operate(T firstNum ,T secondNum){
 
-        long result =(long) firstNum * (long)secondNum;
-
-        if(result != (int) result){
-            throw new ArithmeticException("integer overflow");
+        if( firstNum instanceof Double || secondNum instanceof  Double) {
+            return  (firstNum.doubleValue() * secondNum.doubleValue());
+        }else if(firstNum instanceof Float || secondNum instanceof Float) {
+            return  (firstNum.floatValue() * secondNum.floatValue());
+        }else if(firstNum instanceof Long || secondNum instanceof Long) {
+            return  (firstNum.longValue() * secondNum.longValue());
+        }else if(firstNum instanceof Integer || secondNum instanceof Integer) {
+            return  (firstNum.intValue() * secondNum.intValue());
+        }else{
+            throw new IllegalArgumentException("Not Calculate");
         }
-        return (int)result;
     }
 }
 

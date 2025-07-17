@@ -22,32 +22,25 @@ public class App {
 
             try {
                 if(kindResults.equals("operate")) {
-                    int firstNum;
-                    int secondNum;
+                    Number firstNum;
+                    Number secondNum;
                     char operator;
 
-                    //인수는 양의 정수
-                    while (true) {
+
+                    // 다양한 타입을 받아 올 수 있는 방법?
+                    // double? int?
                         System.out.print("첫 번째 인수를 입력하세요: ");
-                        firstNum = scanner.nextInt();
 
-                        if (firstNum < 0) {
-                            System.out.println("인수는 양수의 값(0 포함)을 가집니다.");
-                        } else {
-                            break;
-                        }
-                    }
-                    //인수는 양의 정수
-                    while (true) {
+                        firstNum = scanner.nextDouble();
+
+
+
                         System.out.print("두 번째 인수를 입력하세요: ");
-                        secondNum = scanner.nextInt();
+                        secondNum = scanner.nextDouble();
 
-                        if (secondNum < 0) {
-                            System.out.println("인수는 양수의 값(0 포함)을 가집니다.");
-                        } else {
-                            break;
-                        }
-                    }
+
+
+
 
                     //사칙연산 기호는 +, -, *, /
 
@@ -56,8 +49,7 @@ public class App {
 
 
 
-                    int result = 0;
-
+                    Number result = 0;
                     result = operateResults.calculate(firstNum, secondNum, operator);
                     strResult = result + "";
                 } else if (kindResults.equals("circle")) {

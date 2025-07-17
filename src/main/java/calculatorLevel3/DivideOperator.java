@@ -3,17 +3,18 @@ package calculatorLevel3;
 public class DivideOperator implements Operator {
 
     @Override
-    public int operate(int firstNum, int secondNum) throws ArithmeticException{
+    public <T extends Number> double operate(T firstNum ,T secondNum){
 
-        int result = firstNum / secondNum;
-
-        if((firstNum & secondNum & result) >= 0){
-            return result;
+        if( firstNum instanceof Double || secondNum instanceof  Double) {
+            return  (firstNum.doubleValue() / secondNum.doubleValue());
+        }else if(firstNum instanceof Float || secondNum instanceof Float) {
+            return  (firstNum.floatValue() / secondNum.floatValue());
+        }else if(firstNum instanceof Long || secondNum instanceof Long) {
+            return  (firstNum.longValue() / secondNum.longValue());
+        }else if(firstNum instanceof Integer || secondNum instanceof Integer) {
+            return  (firstNum.intValue() / secondNum.intValue());
         }else{
-            throw new ArithmeticException("integer overflow");
+            throw new IllegalArgumentException("Not Calculate");
         }
     }
 }
-
-//Integer.MIN_VALUE / -1 => 오버플로우 발생
-//조건 식은 양의 정수라고 하였지만, 조건 변경시 코드 변경을 하지 않기 위해 넣음

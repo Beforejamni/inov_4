@@ -4,14 +4,14 @@ import java.util.Queue;
 
 public class ArithmeticCalculator extends Calculator {
 
-    private Queue<String> results;
+    private final Queue<String> results;
 
     public ArithmeticCalculator(Queue<String> results){
         this.results = results;
     }
 
 
-    public int calculate(int firstNum , int secondNum, char operator )throws ArithmeticException {
+    public Number calculate(Number firstNum , Number secondNum, char operator )throws ArithmeticException {
 
         OperatorType[] operatorTypes = OperatorType.values();
 

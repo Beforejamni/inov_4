@@ -2,5 +2,5 @@ package calculatorLevel3;
 
 public interface Operator {
 
-    int operate(int firstNum, int secondNum);
+    public <T extends Number> double operate(T firstNum, T secondNum);
 }
