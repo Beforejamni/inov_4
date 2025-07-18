@@ -4,10 +4,10 @@ package calculatorLevel2;
 
 import java.util.Queue;
 
-public class ArithmeticCalculator<T extends Number> extends Calculator {
+public class ArithmeticCalculator extends Calculator {
 
 
-    private Queue<String> results;
+    private final Queue<String> results;
 
     public ArithmeticCalculator(Queue<String> results){
         this.results = results;

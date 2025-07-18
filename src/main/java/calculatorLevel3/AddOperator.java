@@ -1,6 +1,5 @@
 package calculatorLevel3;
 
-import java.util.NavigableMap;
 
 public class AddOperator implements Operator {
 
@@ -19,7 +18,7 @@ public class AddOperator implements Operator {
             throw new IllegalArgumentException("Not Calculate");
         }
     }
-//overflow를 막지 못한다.
+
 
 }
 

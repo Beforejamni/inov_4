@@ -5,10 +5,10 @@ import java.util.Queue;
 public class CircleCalculator extends Calculator {
 
     private final static double pie = 3.14159;
-    private Queue<String> results;
+    private Queue<Double> results;
 
 
-    public CircleCalculator(Queue<String> results){
+    public CircleCalculator(Queue<Double> results){
         this.results = results;
     }
 
@@ -18,7 +18,7 @@ public class CircleCalculator extends Calculator {
 
 
     @Override
-    public void addResult(String result) {
+    public void addResult(double result) {
         results.add(result);
 
     }
@@ -32,13 +32,18 @@ public class CircleCalculator extends Calculator {
     @Override
     public void inquiryResults() {
         System.out.print("results : ");
-        for (String result : results) {
+        for (double result : results) {
             System.out.println(result + ", ");
         }
         System.out.println();
     }
 
-    public Queue<String> getResults() {
+    @Override
+    public void inquiryResultsOverScanNumber(double number) {
+
+    }
+
+    public Queue<Double> getResults() {
         return results;
     }
 }

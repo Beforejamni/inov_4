@@ -13,45 +13,38 @@ public class App {
        ArithmeticCalculator operateResults = new ArithmeticCalculator(new LinkedList<>());
        CircleCalculator circleResults = new CircleCalculator(new LinkedList<>());
 
-        //결과를 문자열로 저장
-        String strResult = "";
+        double result = 0;
 
         while (true) {
             System.out.print("계산하고 싶은 종류를 선택하세요( circle or  operate ) : ");
             String kindResults = scanner.next();
 
+
             try {
                 if(kindResults.equals("operate")) {
-                    Number firstNum;
-                    Number secondNum;
+
+                    //조건이 피연산자를 여러 타입으로 받을 수 있도록 기능 확장 Generics를 사용 후,
+                    //계산기에서 double이 가장 큰 타입임으로 double로 선언하였습니다.
+                    double firstNum;
+                    double secondNum;
                     char operator;
 
 
-                    // 다양한 타입을 받아 올 수 있는 방법?
-                    // double? int?
                         System.out.print("첫 번째 인수를 입력하세요: ");
 
                         firstNum = scanner.nextDouble();
 
-
-
                         System.out.print("두 번째 인수를 입력하세요: ");
                         secondNum = scanner.nextDouble();
-
-
-
-
 
                     //사칙연산 기호는 +, -, *, /
 
                     System.out.print("사칙 연산기호를 입력하세요: ");
                     operator = scanner.next().charAt(0);
 
-
-
-                    Number result = 0;
                     result = operateResults.calculate(firstNum, secondNum, operator);
-                    strResult = result + "";
+
+
                 } else if (kindResults.equals("circle")) {
                         double radius = 0;
                     while(true) {
@@ -66,8 +59,7 @@ public class App {
                         }
                     }
 
-                    double result = circleResults.calculate(radius);
-                    strResult = result + "";
+                   result = circleResults.calculate(radius);
 
                 } else{
                     System.out.println("circle 과 operate 중에 하나를 골라주세요");
@@ -80,22 +72,20 @@ public class App {
                 //InputMismatchException 은 e.getMessage() 로 null을 보냄
                 System.out.println("InputMismatchException");
 
-                strResult = "InputMismatchException";
 
             } catch (ArithmeticException e) {
                 System.out.println(e.getMessage());
 
-                strResult = e.getMessage();
             }
 
 
 
-            System.out.println("result = " + strResult);
+            System.out.println("result = " + result);
 
             if(kindResults.equals("operate")) {
-                operateResults.addResult(strResult);
+                operateResults.addResult(result);
             }else if (kindResults.equals("circle")) {
-                circleResults.addResult(strResult);
+                circleResults.addResult(result);
 
             }
 
@@ -155,6 +145,13 @@ public class App {
             operateResults.inquiryResults();
             circleResults.inquiryResults();
 
+        try {
+            // 입력 받은 숫자보다 높은 결과값만 반기
+            System.out.println("숫자를 입력해주세요. 사칙연산 결과 값 중 숫자보다 높은 결과값만 출력됩니다.");
+            operateResults.inquiryResultsOverScanNumber(scanner.nextDouble());
+        } catch(InputMismatchException e){
+            System.out.println("잘못된 값입니다.");
+        }
             System.out.println("더 계산하시겠습니까?(exit 입력 시 종료)");
             String exit = scanner.next();
 
@@ -168,6 +165,4 @@ public class App {
     }
 }
 
-// 처음부터 바로 관리(결과 제거, 조회)로 이어지는 코드 작성을 해보고 싶었습니다.
-//abstract class 생성 시, 공통된 메서드를 abstract에 구체화하는 것이 맞는지
-// override를 통해 재정의해서 쓰는 것이 맞는지에 대한 고민이 많이 생깁니다.
+
